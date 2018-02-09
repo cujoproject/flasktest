@@ -1,0 +1,18 @@
+FROM python:3.4-alpine
+ENV APP_DIR=/scanapp
+RUN mkdir ${APP_DIR}
+COPY . ${APP_DIR}
+
+RUN pip install -r ${APP_DIR}/requirements.txt
+
+RUN mkdir ${APP_DIR}/data
+VOLUME ${APP_DIR}/data
+
+EXPOSE 5000
+
+WORKDIR ${APP_DIR}
+
+CMD ['python', 'app.py']
+
+
+
